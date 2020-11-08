@@ -121,22 +121,18 @@ int main(void)
     	uint8_t btn = read_button();
 
     	if(btn) {
-
-			for(int i = 0; i<4; i++){
-    			delay();
+		for(int i = 0; i<4; i++){
+			delay();
     			//prizgi i-to LED
     			led_on(i);
-			}
+		}
 
     		for(int i = 0; i<4; i++){
-				delay();
-				//ugasni i-to LED
-				led_off(i);
-			}
+			delay();
+			//ugasni i-to LED
+			led_off(i);
+		}
     	}
-
-    	//ponovni pritisk reseta
-
     }
     /* USER CODE END 3 */
 }
@@ -184,53 +180,46 @@ void SystemClock_Config(void)
 void reset_two_bits(volatile uint32_t *address, uint8_t p)
 {
     // reset two bits (p and p+1) in a 32 bit register
-    // TODO
 	*address = *address & ~(3<<p);
 }
 
 void set_bit(volatile uint32_t *address, uint8_t p)
 {
     // set bit p in a 32 bit register
-    // TODO
 	*address = *address | (1<<p);
 }
 
 void set_bit_16(volatile uint16_t *address, uint8_t p)
 {
     // set bit p in a 16 bit register
-    // TODO
-	*address = *address | (1<<p);
+    	*address = *address | (1<<p);
 }
 
 void set_two_bits_to(volatile uint32_t *address, uint8_t p, uint8_t n)
 {
     // set two bits (p and p+1) to value n in a 32 bit register
-    // TODO
-	*address = *address & ~(3<<p);
+    	*address = *address & ~(3<<p);
 	*address = *address | (n<<p);
 }
 
 void button_port_clock_on()
 {
     // turn on the button port clock
-    // TODO
-	uint32_t *a =(uint32_t *) 0x40023830;
+   	uint32_t *a =(uint32_t *) 0x40023830;
 	*a = *a | (1<<0);
 }
 
 void led_port_clock_on()
 {
     // turn on the led port clock
-    // TODO
-	uint32_t *a = (uint32_t *) 0x40023830;
+    	uint32_t *a = (uint32_t *) 0x40023830;
 	*a = *a | (1<<3);
 }
 
 void button_init()
 {
     // init the button
-    // TODO
-	uint32_t *a = (uint32_t *) 0x40020000 ;
+    	uint32_t *a = (uint32_t *) 0x40020000 ;
 	uint32_t *b = (uint32_t *)  0x4002000C ;
 	*a = *a & ~(3<<0);
 	*b = *b & ~(3<<0);
@@ -239,8 +228,7 @@ void button_init()
 void led_init()
 {
     // init leds
-    // TODO
-	uint32_t *a = 0x40020C04;
+    	uint32_t *a = 0x40020C04;
 	uint32_t *b = 0x40020C08;
 	uint32_t *c = 0x40020C0C;
 
@@ -255,16 +243,14 @@ void led_init()
 void led_on(uint8_t i)
 {
     // turn led number i on
-    // TODO
-	uint16_t *a =  0x40020C18;
+    	uint16_t *a =  0x40020C18;
 	*a |= (1<<(i+12));
 }
 
 void led_off(uint8_t i)
 {
     // turn led number i off
-    // TODO
-	uint16_t *a= 0x40020C1A;
+    	uint16_t *a= 0x40020C1A;
 	if(i==0){
 		*a |= (1<<12);
 	}else *a |= (1<<(i+12));
@@ -273,8 +259,7 @@ void led_off(uint8_t i)
 uint8_t read_button()
 {
     // get button state
-    // TODO
-	uint16_t *a = 0x40020010;
+    	uint16_t *a = 0x40020010;
 	if(*a & (1<<0))return 1;
 	return 0;
 }
@@ -282,8 +267,7 @@ uint8_t read_button()
 void delay()
 {
     // hardcoded delay
-    // TODO
-	volatile int i = 500000;
+    	volatile int i = 500000;
 	while(i--);
 }
 
